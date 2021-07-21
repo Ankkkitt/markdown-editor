@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import ReactMarkdown from "react-markdown";
+import "./index.css";
 
-function App() {
+export default function App() {
+  const [markDown, setMarkDown] = useState("Welcome to MarkDown !");
+  const heading = {
+    textAlign: "center"
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1 style={heading}> Welcome to MarkDown Code Editor </h1>
+      <div className="center-div">
+        <textarea
+          className="left-side"
+          value={markDown}
+          onChange={(e) => {
+            setMarkDown(e.target.value);
+          }}
+        ></textarea>
+        <div className="right-side">
+          <ReactMarkdown>{markDown}</ReactMarkdown>
+        </div>
+      </div>
+    </>
   );
 }
-
-export default App;
